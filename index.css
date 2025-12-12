@@ -1,6 +1,18 @@
-body {
-  background-color: #fdfbf7;
-  color: #1e1e1e;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    background-color: #fdfbf7;
+    color: #1e1e1e;
+  }
+}
+
+/* Keep Mermaid SVG responsive */
+.mermaid-diagram svg {
+  max-width: 100%;
+  height: auto;
 }
 
 /* Hide scrollbar for Chrome, Safari and Opera */
@@ -56,6 +68,11 @@ body {
     max-width: none !important;
     font-size: 11pt;
     line-height: 1.55;
+  }
+
+  .print-markdown .mermaid-diagram {
+    break-inside: avoid;
+    page-break-inside: avoid;
   }
 
   .print-markdown h1,

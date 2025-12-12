@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
+import { MermaidDiagram } from './MermaidDiagram';
 
 interface PreviewProps {
   content: string;
@@ -45,13 +46,21 @@ export const Preview: React.FC<PreviewProps> = ({ content, scrollRef, onScroll }
                         <blockquote className="my-8 pl-6 border-l-[6px] border-black bg-funky-light p-4 italic text-xl font-serif text-gray-900 shadow-[4px_4px_0px_0px_rgba(0,0,0,0.1)]" {...props} />
                     ),
                     code: ({node, ...props}) => {
-                        // @ts-ignore
-                        const inline = props.inline
+                        const inline = (props as any).inline as boolean | undefined;
+                        const className = (props as any).className as string | undefined;
+                        const raw = String((props as any).children ?? '');
+                        const match = /language-(\w+)/.exec(className ?? '');
+                        const language = match?.[1]?.toLowerCase();
+
+                        if (!inline && language === 'mermaid') {
+                          return <MermaidDiagram code={raw} />;
+                        }
+
                         return inline ? (
-                             <code className="bg-funky-yellow/30 px-1.5 py-0.5 rounded border border-black/10 font-bold text-sm text-black" {...props} />
+                          <code className="bg-funky-yellow/30 px-1.5 py-0.5 rounded border border-black/10 font-bold text-sm text-black" {...props} />
                         ) : (
-                             <code className="block bg-[#1e1e1e] text-funky-pink p-4 rounded-lg border-2 border-black shadow-hard text-sm overflow-x-auto my-6" {...props} />
-                        )
+                          <code className="block bg-[#1e1e1e] text-funky-pink p-4 rounded-lg border-2 border-black shadow-hard text-sm overflow-x-auto my-6" {...props} />
+                        );
                     },
                     pre: ({node, ...props}) => <pre className="bg-transparent p-0 m-0" {...props} />,
                     a: ({node, ...props}) => <a className="text-blue-600 font-bold underline decoration-2 decoration-funky-yellow underline-offset-4 hover:bg-funky-yellow hover:text-black transition-colors" {...props} />,

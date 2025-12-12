@@ -178,7 +178,15 @@ const App = () => {
            </div>
            
            {/* View Modes Desktop */}
-           <div className="hidden md:flex gap-2">
+             <div className="hidden md:flex gap-2">
+              <Button 
+                variant={viewMode === ViewMode.EDIT ? 'primary' : 'ghost'} 
+                onClick={() => setViewMode(ViewMode.EDIT)}
+                className="px-3"
+                title="Editor"
+              >
+                <FileText className="w-5 h-5" />
+              </Button>
                 <Button 
                     variant={viewMode === ViewMode.SPLIT ? 'primary' : 'ghost'} 
                     onClick={() => setViewMode(ViewMode.SPLIT)}
@@ -187,6 +195,14 @@ const App = () => {
                 >
                     <Columns className="w-5 h-5" />
                 </Button>
+              <Button 
+                variant={viewMode === ViewMode.PREVIEW ? 'primary' : 'ghost'} 
+                onClick={() => setViewMode(ViewMode.PREVIEW)}
+                className="px-3"
+                title="Preview"
+              >
+                <Maximize className="w-5 h-5" />
+              </Button>
            </div>
 
            <div className="h-8 w-[2px] bg-black/10 mx-2 hidden md:block"></div>
