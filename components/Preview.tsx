@@ -30,7 +30,7 @@ export const Preview: React.FC<PreviewProps> = ({ content, scrollRef, onScroll }
             <div className="w-4 h-4 border-2 border-black bg-white"></div>
         </div>
       <div ref={scrollRef} onScroll={onScroll} className="flex-1 overflow-auto p-8 md:p-12 bg-white print:p-0 print:overflow-visible">
-        <div className="prose prose-lg max-w-none prose-headings:font-sans prose-p:font-sans prose-code:font-mono">
+        <div className="print-markdown prose prose-lg max-w-none prose-headings:font-sans prose-p:font-sans prose-code:font-mono">
             <ReactMarkdown 
                 remarkPlugins={[remarkGfm]}
                 components={{

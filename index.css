@@ -17,6 +17,14 @@ body {
   @page {
     margin: 2cm;
   }
+  html, body {
+    height: auto !important;
+    overflow: visible !important;
+    background: white !important;
+    color: black !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
   body {
     background: white;
   }
@@ -25,5 +33,107 @@ body {
   }
   .print-only {
     display: block !important;
+  }
+
+  /* Ensure the app doesn't clip printed content */
+  .app-shell {
+    height: auto !important;
+    width: auto !important;
+    overflow: visible !important;
+    background: white !important;
+  }
+
+  /* Force preview to take the full page width (avoid split-grid column leftovers) */
+  .print-layout {
+    display: block !important;
+    height: auto !important;
+    min-height: 0 !important;
+    gap: 0 !important;
+  }
+
+  /* Print-friendly Markdown typography */
+  .print-markdown {
+    max-width: none !important;
+    font-size: 11pt;
+    line-height: 1.55;
+  }
+
+  .print-markdown h1,
+  .print-markdown h2,
+  .print-markdown h3 {
+    color: #000 !important;
+    text-transform: none !important;
+    border-color: #000 !important;
+  }
+
+  .print-markdown h1 {
+    font-size: 24pt !important;
+    margin: 0 0 12pt 0 !important;
+    padding: 0 0 8pt 0 !important;
+  }
+
+  .print-markdown h2 {
+    font-size: 16pt !important;
+    margin: 18pt 0 8pt 0 !important;
+  }
+
+  .print-markdown h3 {
+    font-size: 12pt !important;
+    margin: 14pt 0 6pt 0 !important;
+    border-left: 3px solid #000 !important;
+  }
+
+  .print-markdown p,
+  .print-markdown li {
+    color: #111 !important;
+  }
+
+  .print-markdown a {
+    color: #000 !important;
+    text-decoration: underline !important;
+  }
+
+  .print-markdown blockquote {
+    background: #f5f5f5 !important;
+    box-shadow: none !important;
+    border-left: 4px solid #000 !important;
+  }
+
+  .print-markdown code {
+    background: #f2f2f2 !important;
+    color: #000 !important;
+    border-color: #ddd !important;
+  }
+
+  .print-markdown pre code {
+    display: block;
+    background: #f5f5f5 !important;
+    color: #000 !important;
+    border: 1px solid #ddd !important;
+    box-shadow: none !important;
+  }
+
+  .print-markdown hr {
+    border-top: 2px solid #000 !important;
+  }
+
+  .print-markdown table,
+  .print-markdown th,
+  .print-markdown td {
+    border-color: #000 !important;
+  }
+
+  .print-markdown thead {
+    background: #000 !important;
+    color: #fff !important;
+  }
+
+  /* Avoid awkward page breaks inside blocks */
+  .print-markdown pre,
+  .print-markdown blockquote,
+  .print-markdown table,
+  .print-markdown img {
+    break-inside: avoid;
+    page-break-inside: avoid;
   }
 }

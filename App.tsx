@@ -130,7 +130,7 @@ const App = () => {
   };
 
   return (
-    <div className="h-screen w-screen flex flex-col font-sans selection:bg-funky-pink selection:text-black bg-[#fdfbf7] overflow-hidden">
+    <div className="app-shell h-screen w-screen flex flex-col font-sans selection:bg-funky-pink selection:text-black bg-[#fdfbf7] overflow-hidden">
       
       {/* Toast Container */}
       <div className="fixed top-4 right-4 z-50 flex flex-col gap-2 pointer-events-none">
@@ -233,7 +233,7 @@ const App = () => {
 
       {/* Main Content */}
       <main className="flex-1 p-4 md:p-6 overflow-hidden min-h-0 relative">
-        <div className={`h-full min-h-0 grid gap-4 md:gap-8 transition-all duration-300 ${
+        <div className={`print-layout h-full min-h-0 grid gap-4 md:gap-8 transition-all duration-300 ${
             viewMode === ViewMode.SPLIT ? 'grid-cols-2' : 'grid-cols-1'
         }`}>
             {/* Editor Side */}
